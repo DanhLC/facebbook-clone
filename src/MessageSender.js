@@ -4,8 +4,10 @@ import './MessageSender.css'
 import VideoCamIcon from '@mui/icons-material/Videocam'
 import PhotoLibraryIcon from '@mui/icons-material/PhotoLibrary'
 import InsertEmoticonIcon from '@mui/icons-material/InsertEmoticon'
+import { useStateValue } from './StateProvider';
 
 function MessageSender() {
+    const [{ user }] =  useStateValue();
     const [input, setInput] = useState("");
     const [image, setImageURL] = useState("");
     const handleSubmit = e => {
@@ -17,14 +19,13 @@ function MessageSender() {
 
     return <div className="messageSender">
       <div className="messageSender__top">
-        <Avatar 
-            src='https://scontent.fsgn5-14.fna.fbcdn.net/v/t1.6435-1/45364186_2372535586152465_6937581834809114624_n.jpg?stp=cp0_dst-jpg_p50x50&_nc_cat=101&ccb=1-5&_nc_sid=7206a8&_nc_ohc=fNc0SavaO2sAX-GNgyG&_nc_ht=scontent.fsgn5-14.fna&oh=00_AT8UVWAdUPR_kyAzv-XDLtDE_tPrUs9WV4DbfHkCdsaYMg&oe=62558387'/>
+        <Avatar src={user.photoURL} />
         <form>
             <input 
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 className="messageSender__input"
-                placeholder="What's on your mind" />
+                placeholder={`What's on your mind, ${user.displayName}?`} />
             <input 
                 value={image}
                 onChange={(e) => setImageURL(e.target.value)}

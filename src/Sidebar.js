@@ -8,12 +8,15 @@ import ChatIcon from '@mui/icons-material/Chat';
 import VideoLibraryIcon from '@mui/icons-material/VideoLibrary';
 import StorefrontIcon from '@mui/icons-material/Storefront';
 import ExpandMoreOutlinedIcon from '@mui/icons-material/ExpandMoreOutlined';
+import { useStateValue } from './StateProvider';
 
 function Sidebar() {
+  const [{ user }] = useStateValue();
+
   return <div className="sidebar">
       <SidebarRow 
-        src='https://scontent.fsgn5-14.fna.fbcdn.net/v/t1.6435-1/45364186_2372535586152465_6937581834809114624_n.jpg?stp=cp0_dst-jpg_p50x50&_nc_cat=101&ccb=1-5&_nc_sid=7206a8&_nc_ohc=fNc0SavaO2sAX-GNgyG&_nc_ht=scontent.fsgn5-14.fna&oh=00_AT8UVWAdUPR_kyAzv-XDLtDE_tPrUs9WV4DbfHkCdsaYMg&oe=62558387' 
-        title='Ryuji' />
+        src={user.photoURL} 
+        title={user.displayName} />
       <SidebarRow 
         Icon={LocalHospitalIcon}
         title='Covid 19 Information Center' />

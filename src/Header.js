@@ -11,8 +11,11 @@ import ForumIcon from '@mui/icons-material/Forum';
 import NotificationsActiveIcon from '@mui/icons-material/NotificationsActive';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { Avatar, IconButton } from '@mui/material';
+import { useStateValue } from './StateProvider';
 
 function Header() {
+  const [{ user }] =  useStateValue();
+
   return <div className="header">
       <div className="header__left">
           <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Facebook_Logo_%282019%29.png/1200px-Facebook_Logo_%282019%29.png" alt=""/>
@@ -42,8 +45,8 @@ function Header() {
 
       <div className="header__right">
           <div className="header__info">
-              <Avatar src='https://scontent.fsgn5-14.fna.fbcdn.net/v/t1.6435-1/45364186_2372535586152465_6937581834809114624_n.jpg?stp=cp0_dst-jpg_p50x50&_nc_cat=101&ccb=1-5&_nc_sid=7206a8&_nc_ohc=fNc0SavaO2sAX-GNgyG&_nc_ht=scontent.fsgn5-14.fna&oh=00_AT8UVWAdUPR_kyAzv-XDLtDE_tPrUs9WV4DbfHkCdsaYMg&oe=62558387' />
-              <h4>Ryuji</h4>
+              <Avatar src={user.photoURL} />
+              <h4>{user.displayName}</h4>
           </div>
 
           <IconButton>
